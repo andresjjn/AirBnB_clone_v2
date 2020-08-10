@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                     if value[i] is '\\' and value[i + 1] is '"':
                         pass
                     else:
-                        string += value[i] 
+                        string += value[i]
             return string
         return None
 
@@ -145,9 +145,9 @@ class HBNBCommand(cmd.Cmd):
             return
         kwargs = {}
         for i in range(1, len(tokens)):
-            key_and_value = tokens[i].split('=') 
+            key_and_value = tokens[i].split('=')
             value = self.check_type(key_and_value[1])
-            if value != None:
+            if value is not None:
                 kwargs[key_and_value[0]] = value
         new_instance = HBNBCommand.classes[tokens[0]](**kwargs)
         storage.save()
