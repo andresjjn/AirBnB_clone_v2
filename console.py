@@ -149,6 +149,8 @@ class HBNBCommand(cmd.Cmd):
             value = self.check_type(key_and_value[1])
             if value is not None:
                 kwargs[key_and_value[0]] = value
+            else:
+                return
         new_instance = HBNBCommand.classes[tokens[0]](**kwargs)
         storage.save()
         print(new_instance.id)
