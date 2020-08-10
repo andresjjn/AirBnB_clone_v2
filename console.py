@@ -134,10 +134,10 @@ class HBNBCommand(cmd.Cmd):
             return string
         return None
 
-    def do_create(self, line):
+    def do_create(self, arg):
         """ Create an object of any class"""
-        tokens = line.split()
-        if not line:
+        tokens = arg.split()
+        if not arg:
             print("** class name missing **")
             return
         elif tokens[0] not in HBNBCommand.classes:
