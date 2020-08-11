@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
         if value[0] and value[len(value) - 1] is '"':
             value = value.replace('_', ' ')
             new_string = ""
-            for i in range(1, len(value) - 2):
+            for i in range(1, len(value) - 1):
                 if value[i] is '"':
                     new_string += '\\'
                 new_string += value[i]
