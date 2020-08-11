@@ -141,13 +141,14 @@ class HBNBCommand(cmd.Cmd):
         elif tokens[0] not in HBNBCommand.classes:
             print("** class doesn't exist")
             return
-        new_instance = HBNBCommand.classes[tokens[0]]()
+        kwargs = {}
         for i in range(1, len(tokens)):
             key_and_value = tokens[i].split('=')
             value = self.check_type(key_and_value[1])
             if value is not None:
-                setattr(new_instance, key_and_value[0], value)
-        storage.save()
+                kwargs[key_and_value[0]] = value
+        new_instance = HBNBCommand.classes[tokens[0]](kwargs)
+        new_instance.save()
         print(new_instance.id)
 
     def help_create(self):
