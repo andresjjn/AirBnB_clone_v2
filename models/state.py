@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 from models.base_model import BaseModel
+from models.city import City
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
-    name = ""
-    valid_attr = ['name']
+    __tablename__ = 'states'
+    name = Column(String(128), nullable=False)
+    cities = relationship("City", backref="state", cascade="all, delete")
 
-    def __init__(self, *args, **kwargs):
-        super(State, self).__init__()
-        for key in self.valid_attr:
-            if key in kwargs:
-                setattr(self, key, kwargs[key])
+    @property
+    def cities(self):
+        list_city=[]
+        for city in storage.all(City):
+            if self.id is city.state_id:
+                list_city.append(city)
+

@@ -3,14 +3,8 @@
 from models.base_model import BaseModel
 
 
-class City(BaseModel):
+class City(BaseModel, Base):
     """ The city class, contains state ID and name """
-    state_id = ""
-    name = ""
-    valid_attr = ['state_id', 'name']
-
-    def __init__(self, *args, **kwargs):
-        super(City, self).__init__()
-        for key in self.valid_attr:
-            if key in kwargs:
-                setattr(self, key, kwargs[key])
+    __tablename__ = 'cities'
+    state_id = Column(String(60), nullable=False, Foreignkey('states.id'))
+    name = Column(String(128), nullable=False)
