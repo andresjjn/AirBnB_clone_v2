@@ -25,7 +25,9 @@ class Place(BaseModel, Base):
     @property
     def reviews(self):
         """Getter of reviews"""
+        from models import storage
         list_reviews = []
         for review in storage.all(Review):
             if self.id is review.place_id:
                 list_reviews.append(review)
+        return list_reviews
