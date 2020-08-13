@@ -7,6 +7,7 @@ from models.city import City
 from models.state import State
 from models.user import User
 from models.place import Place
+from models.review import Review
 from models.base_model import Base
 
 
@@ -24,7 +25,6 @@ class DBStorage():
             pool_pre_ping=True)
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
-        Base.metadata.create_all(self.__engine)
 
     def all(self, cls=None):
         """Query on the current database session all objects depending
