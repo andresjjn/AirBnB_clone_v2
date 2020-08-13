@@ -15,11 +15,11 @@ class DBStorage():
 
     def __init__(self):
         """Constructor"""
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format
-                        (getenv('HBNB_MYSQL_USER'),
-                        getenv('HBNB_MYSQL_PWD'),
-                        getenv('HBNB_MYSQL_HOST'),
-                        getenv('HBNB_MYSQL_DB')), pool_pre_ping=True)
+        self.__engine = create_engine(
+            'mysql+mysqldb://{}:{}@{}/{}'.format(
+                getenv('HBNB_MYSQL_USER'), getenv('HBNB_MYSQL_PWD'),
+                getenv('HBNB_MYSQL_HOST'), getenv('HBNB_MYSQL_DB')),
+            pool_pre_ping=True)
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
@@ -28,7 +28,7 @@ class DBStorage():
         """Query on the current database session all objects depending
         of the class name"""
 
-        if cls in None:
+        if cls is None:
             classes = [User, State, City, Amenity, Place, Review]
             for clase in classes:
                 result = self.__session.query(clase).all()
@@ -67,8 +67,3 @@ class DBStorage():
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
-
-
-
-
-

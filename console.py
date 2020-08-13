@@ -147,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
             value = self.check_type(key_and_value[1])
             if value is not None:
                 kwargs[key_and_value[0]] = value
-        new_instance = HBNBCommand.classes[tokens[0]](kwargs)
+        new_instance = HBNBCommand.classes[tokens[0]](**kwargs)
         new_instance.save()
         print(new_instance.id)
 
@@ -201,7 +201,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if c_name not in HBNBCommand.classes:
+        if c_name not in self.classes:
             print("** class doesn't exist **")
             return
 
@@ -227,17 +227,16 @@ class HBNBCommand(cmd.Cmd):
         print_list = []
 
         if args:
-            args = args.split(' ')[0]  # remove possible trailing args
-            if args not in HBNBCommand.classes:
+            args = args.split(' ')[0]  # remove possible trailing arg
+            if args not in self.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all(self.classes[args]).items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
-
         print(print_list)
 
     def help_all(self):
