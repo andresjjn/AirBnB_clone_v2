@@ -5,6 +5,9 @@
 -- all privileges on the database hbnb_dev_db
 -- SELECT privilege on the database performance_schema
 
+-- EXECUTE
+-- cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
+
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost';
 SET PASSWORD FOR 'hbnb_dev'@'localhost' = 'hbnb_dev_pwd';
