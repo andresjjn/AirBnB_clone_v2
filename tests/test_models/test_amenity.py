@@ -18,14 +18,6 @@ class TestAmenity(unittest.TestCase):
     class attributes
     ------------------------------------------------------------
     """
-    def test_attributes(self):
-        """ Tests for class attributes """
-        self.assertTrue('__tablename__' in Amenity.__dict__)
-        self.assertTrue('name' in Amenity.__dict__)
-
-    def test_type_attributes(self):
-        """ check type """
-        self.assertIsInstance(Amenity.__tablename__, str)
 
     """
     ------------------------------------------------------------
@@ -42,8 +34,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_init_with_kwargs(self):
         """ test constructor: with **kwargs (attrs since BaseModel + attrs) """
-        a = Amenity(**{'__class__': "SomeClass",
-                       'id': "aaaaaaaaa"})
+        a = Amenity(**{'id': "aaaaaaaaa"})
         """ must not create the key: __class__ """
         self.assertFalse('__class__' in a.__dict__)
         """ must create the keys """
