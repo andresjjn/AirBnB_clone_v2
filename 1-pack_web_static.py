@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 from fabric.api import *
-from datatime import datatime
+from datetime import datetime
 
 
 def do_pack():
