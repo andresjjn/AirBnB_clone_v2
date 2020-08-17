@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 from fabric.api import *
 from datetime import datetime
 
 
 def do_pack():
-    """ script that generates a .tgz archive from the contents of the web_static
+    """ Script that generates a .tgz archive from the contents of the web_static
     folder of your AirBnB Clone repo, using the function do_pack."""
     local("sudo mkdir -p versions")
     times = datetime.now().strftime("%Y%m%d%H%M%S")
