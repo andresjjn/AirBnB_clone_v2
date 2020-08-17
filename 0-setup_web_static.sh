@@ -3,21 +3,11 @@
 sudo apt-get -y update
 sudo apt-get install -y nginx
 sudo ufw allow 'Nginx HTTP'
-if [ ! -d "data" ]; then
-    mkdir -p data;
-fi
-if [ ! -d "/data/web_static" ]; then
-    mkdir -p /data/web_static;
-fi
-if [ ! -d "/data/web_static/releases" ]; then
-    mkdir -p /data/web_static/releases;
-fi
-if [ ! -d "/data/web_static/shared" ]; then
-    mkdir -p /data/web_static/shared;
-fi
-if [ ! -d "/data/web_static/releases/test" ]; then
-    mkdir -p perro/data;
-fi
+mkdir -p /data/
+mkdir -p /data/web_static/
+mkdir -p /data/web_static/releases/
+mkdir -p /data/web_static/shared/
+mkdir -p /data/web_static/releases/test/
 {
     echo "<!DOCTYPE html>"
     echo "<html lang=\"en\">"
@@ -31,12 +21,7 @@ fi
     echo "</body>"
     echo "</html>"
 } > /data/web_static/releases/test/index.html
-if [ -d "/data/web_static/releases/test" ]; then
-    sudo rm -r /data/web_static/releases/test
-    sudo ln -s /data/web_static/current /data/web_static/releases/test/
-else
-    sudo ln -s /data/web_static/current /data/web_static/releases/test/
-fi
-sudo chmod -R ubuntu:ubuntu data
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i '33i \\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-enabled/default
 sudo service nginx restart
