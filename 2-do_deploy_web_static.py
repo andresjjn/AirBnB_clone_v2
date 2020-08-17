@@ -16,7 +16,8 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """ distributes an archive to your web servers """
+    """ Script (based on the file 1-pack_web_static.py) that distributes an archive
+    to your web servers, using the function do_deploy """ 
     if exists(archive_path) is False:
         return False
     else:
