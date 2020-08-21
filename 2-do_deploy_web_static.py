@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" This file deploy web static files in both servers """ 
 from fabric.api import *
 from datetime import datetime
 from os.path import exists
