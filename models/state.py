@@ -17,7 +17,7 @@ class State(BaseModel, Base):
         """Getter of cities"""
         from models import storage
         list_city = []
-        for city in storage.all(City):
-            if self.id is city.state_id:
-                list_city.append(city)
+        for city, value in storage.all(City).items():
+            if self.id is value.state_id:
+                list_city.append(value)
         return list_city
